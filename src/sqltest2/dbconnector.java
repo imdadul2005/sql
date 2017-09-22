@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
 import java.util.Properties;
-import sun.security.util.PropertyExpander;
 
 /**
  *
@@ -63,13 +62,14 @@ public class dbconnector {
             System.out.println(ex);
         }
     }
-    
-    public void addStudent(String firstName, String lastName, String DOB){
-       
-     /**
-     * @param firstName name of 
+    /**
+     * 
+     * @param firstName First Name of the student
+     * @param lastName Last Name of the student
+     * @param DOB Date of Birth of the student
      */
-     
+    public void addStudent(String firstName, String lastName, String DOB){
+   
      String values = "'" +  firstName+"'" +  "," +"'" +   lastName +"'" +  ", '" + DOB + "'";   
      String query = "insert into  stinfo (stFirstName,stLastName,stDOB) values ( " + values + ");";
      try{
@@ -78,12 +78,10 @@ public class dbconnector {
          System.out.println(ex);
      }
    }
-      public void removeStudent(String firstName){
-       
-     /**
-     * @param firstName name of 
+      /**
+     * @param firstName first name of the student which will be removed from the database. If multiple student with same first name exist than all the student will be deleted from the database.
      */
-     
+     public void removeStudent(String firstName){
      String query = "delete from stinfo where stFirstName = '" + firstName + "'; ";
      try{
      statement.executeUpdate(query);
